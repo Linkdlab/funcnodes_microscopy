@@ -1,4 +1,3 @@
-import setuptools # because some code of the imports used distutils, which leads to conflicts
 import funcnodes as fn
 from typing import Tuple
 import numpy as np
