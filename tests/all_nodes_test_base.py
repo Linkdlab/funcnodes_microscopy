@@ -116,6 +116,10 @@ class TestAllNodesBase(unittest.IsolatedAsyncioTestCase):
 
     @classmethod
     def setUpClass(cls):
+        from funcnodes_core import testing
+
+        testing.setup()
+
         def get_all_nodes_classes(shelf: fn.Shelf, current=None):
             if current is None:
                 current = []
@@ -159,6 +163,10 @@ class TestAllNodesBase(unittest.IsolatedAsyncioTestCase):
     @classmethod
     def tearDownClass(cls):
         # undo the monkey patching
+        from funcnodes_core import testing
+
+        testing.teardown()
+
         for node_class in cls.all_nodes:
             if hasattr(node_class, "TestAllNodes_func"):
                 node_class.func = node_class.TestAllNodes_func

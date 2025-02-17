@@ -519,15 +519,15 @@ dev = [
 
 [[package]]
 name = "funcnodes-module"
-version = "0.2.8"
+version = "0.2.9"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "licensecheck" },
     { name = "toml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/88/bd/333a098faff77689f7bae5543cef9b01daa7420c13e347416c7fb1dfb57f/funcnodes_module-0.2.8.tar.gz", hash = "sha256:fd76739b8f269700d7708585467e365c38c0d1b1c6249b005041466372c43b44", size = 34391 }
+sdist = { url = "https://files.pythonhosted.org/packages/93/00/ffbebe0ab782eeab2871bc74d8bbfc7bc4d3b4b405f4944b2029eabdcf8c/funcnodes_module-0.2.9.tar.gz", hash = "sha256:d914c5d74b0bee940fec9c366892048f9716ab5657207855cf6824cae68090fc", size = 35275 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/53/6d/757f1a11c3057778660b8fc070b0a1019ac0fdade17b790fb3b479ffedbe/funcnodes_module-0.2.8-py3-none-any.whl", hash = "sha256:9a97e7dd60507d8e32d5c9ea634b34bfd9132fadab0073a24a1d585ed009216e", size = 40326 },
+    { url = "https://files.pythonhosted.org/packages/31/dc/83004549b857d3fe0650acf9c26e4d0ca1b63803ecb3096aa5979514cc06/funcnodes_module-0.2.9-py3-none-any.whl", hash = "sha256:63ce5728aaa8c4900ebbd91ac0436e37c63e4484773ef8e8c7860cd83f36cfcb", size = 40776 },
 ]
 
 [[package]]
@@ -545,17 +545,18 @@ wheels = [
 
 [[package]]
 name = "funcnodes-opencv"
-version = "0.2.4"
+version = "0.2.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "funcnodes" },
     { name = "funcnodes-images" },
     { name = "funcnodes-numpy" },
-    { name = "opencv-python-headless" },
+    { name = "opencv-python", marker = "sys_platform == 'emscripten'" },
+    { name = "opencv-python-headless", marker = "sys_platform != 'emscripten'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/a9/31/833e4764c8e067e08c3cecd4800efc4520a66085af31fadeb6ba7d6ba6b4/funcnodes_opencv-0.2.4.tar.gz", hash = "sha256:0b0ae0af5e494d8e5f81d6ee7eab924815ca5c7befa36b030d618d7caa2f052d", size = 194434 }
+sdist = { url = "https://files.pythonhosted.org/packages/ca/56/51978a28568a343ef1a59b31a4d3464fc54bc9e043a7a54e3291e1426604/funcnodes_opencv-0.2.6.tar.gz", hash = "sha256:485c6026a543f8d6be7f11254936e2e6a6ced3fef95c82c4767e419f93555b7a", size = 194508 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a9/d8/d980f2538fdaf9b62391e1d149c4235858c2438f21e7e14b929e4f1f973c/funcnodes_opencv-0.2.4-py3-none-any.whl", hash = "sha256:27dec51530aa920f602577f43ca6fcb5ce2223896e1b2002b771d68059c3ee05", size = 25312 },
+    { url = "https://files.pythonhosted.org/packages/82/72/6299fd25eaebcf57a6b813fef1f3d48837553b8a3c6d7b61edd4d18395a8/funcnodes_opencv-0.2.6-py3-none-any.whl", hash = "sha256:36137da03e214ceeec7b617a1b245d3e33371020dfb090d13ae76f29206c64f5", size = 25346 },
 ]
 
 [[package]]
@@ -1198,7 +1199,7 @@ name = "opencv-python-headless"
 version = "4.11.0.86"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "numpy" },
+    { name = "numpy", marker = "sys_platform != 'emscripten'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/36/2f/5b2b3ba52c864848885ba988f24b7f105052f68da9ab0e693cc7c25b0b30/opencv-python-headless-4.11.0.86.tar.gz", hash = "sha256:996eb282ca4b43ec6a3972414de0e2331f5d9cda2b41091a49739c19fb843798", size = 95177929 }
 wheels = [

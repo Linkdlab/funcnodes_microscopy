@@ -370,6 +370,8 @@ def segment(
     Returns:
     tuple: Contour arrays and their corresponding centroids.
     """
+    if image.ndim == 3:
+        image = image[:, :, 0]
     model = SegmentModels.v(model)
     pretrained_model = StarDist2D.from_pretrained(model)
     # pretrained_model.config.use_gpu = True

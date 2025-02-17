@@ -1,6 +1,6 @@
 import funcnodes as fn
 import unittest
-from funcnodes_microscopy.SEM import upload_sem_image
+from funcnodes_microscopy.SEM import sem_image
 from funcnodes_microscopy.images import (
     increase_resolution,
     segment,
@@ -10,8 +10,6 @@ from funcnodes_microscopy.images import (
 )
 import os
 
-fn.config.IN_NODE_TEST = True
-
 
 class TestSegmentation(unittest.IsolatedAsyncioTestCase):
     def setUp(self):
@@ -19,14 +17,14 @@ class TestSegmentation(unittest.IsolatedAsyncioTestCase):
             self.tiffbytes = f.read()
 
     async def test_classical_segmentation(self):
-        load_sem: fn.Node = upload_sem_image()
+        load_sem: fn.Node = sem_image()
         load_sem.inputs["input"].value = self.tiffbytes
         self.assertIsInstance(load_sem, fn.Node)
         res: fn.Node = increase_resolution()
         res.inputs["image"].connect(load_sem.outputs["image"])
         # res.inputs["resolution_factor"].value = 3
         seg: fn.Node = segment()
-        seg.inputs["image"].connect(res.outputs["out"])
+        seg.inputs["image"].connect(load_sem.outputs["image"])
 
         # seg.inputs["iter"].value = 3
         # seg.inputs["pixel_size"].value = 7.344
