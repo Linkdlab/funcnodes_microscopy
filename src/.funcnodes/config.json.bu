@@ -1,0 +1,11 @@
+{
+  "env_dir": "/Users/kouroshmini/.funcnodes/env",
+  "worker_manager": {
+    "host": "localhost",
+    "port": 9380
+  },
+  "frontend": {
+    "port": 8000,
+    "host": "localhost"
+  }
+}

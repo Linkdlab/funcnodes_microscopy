@@ -97,7 +97,7 @@ def upload_sem_image(input: FileUpload) -> Tuple[np.ndarray, Dict[str, Any]]:
     if isinstance(input, dict):
         input = FileUpload(**input)
 
-    return _read_sem_image(input.bytedata)
+    return _read_sem_image(input)
 
 
 SEM_NODE_SHELF = Shelf(
