@@ -29,7 +29,11 @@ name = "Kourosh Rezaei"
 email = "kourosh.rezaei@linkdlab.de"
 
 [dependency-groups]
-dev = ["funcnodes-module>=0.2.8", "pre-commit>=4.1.0", "pytest>=8.3.4"]
+dev = [
+    "funcnodes-module>=0.2.8",
+    "pre-commit>=4.1.0",
+    "pytest>=8.3.4",
+]
 
 [build-system]
 requires = ["setuptools>=42"]

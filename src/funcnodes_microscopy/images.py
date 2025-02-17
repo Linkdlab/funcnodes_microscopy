@@ -1,19 +1,18 @@
 import funcnodes as fn
-from typing import Dict, Any, Tuple
+from typing import Tuple
 import numpy as np
-from enum import Enum
 from stardist.models import StarDist2D
 from csbdeep.utils import normalize
 from skimage.measure import regionprops, find_contours
 import cv2
 from skimage.filters import threshold_otsu
-from sklearn.decomposition import PCA
 from concurrent.futures import ThreadPoolExecutor
 from sklearn.cluster import KMeans
 
 import torch
 from torch import Tensor
 from super_image import PanModel
+
 
 class SegmentModels(fn.DataEnum):
     model_1 = "2D_demo"
@@ -362,9 +361,11 @@ def segment(
     Parameters:
     image (np.ndarray): The input grayscale image as a NumPy array.
     model: A pre-trained segmentation model for particle detection.
-    exclude_background (bool, optional): If True, excludes contours whose center lies in the background. Default is True.
+    exclude_background (bool, optional): If True, excludes contours whose center lies in the background.
+    Default is True.
     tiling (bool, optional): If True, uses tiling to improve performance on large images. Default is False.
-    tiling_factor (int, optional): The number of tiles to divide the image into along each axis if tiling is used. Default is 4.
+    tiling_factor (int, optional): The number of tiles to divide the image into along each axis if tiling is used.
+    Default is 4.
 
     Returns:
     tuple: Contour arrays and their corresponding centroids.

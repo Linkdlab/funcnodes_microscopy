@@ -19,7 +19,6 @@ class TestSegmentation(unittest.IsolatedAsyncioTestCase):
             self.tiffbytes = f.read()
 
     async def test_classical_segmentation(self):
-
         load_sem: fn.Node = upload_sem_image()
         load_sem.inputs["input"].value = self.tiffbytes
         self.assertIsInstance(load_sem, fn.Node)
@@ -28,7 +27,7 @@ class TestSegmentation(unittest.IsolatedAsyncioTestCase):
         # res.inputs["resolution_factor"].value = 3
         seg: fn.Node = segment()
         seg.inputs["image"].connect(res.outputs["out"])
-        
+
         # seg.inputs["iter"].value = 3
         # seg.inputs["pixel_size"].value = 7.344
         # seg.inputs["min_diameter"].value = 10

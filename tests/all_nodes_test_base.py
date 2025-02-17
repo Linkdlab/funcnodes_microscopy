@@ -167,5 +167,5 @@ class TestAllNodesBase(unittest.IsolatedAsyncioTestCase):
         # Final assertion to ensure all nodes were tested
         if cls.nodes_to_test:
             raise AssertionError(
-                f"These nodes were not tested ({ len(cls.nodes_to_test) }): { cls.nodes_to_test}"
+                f"These nodes were not tested ({len(cls.nodes_to_test)}): {cls.nodes_to_test}"
             )

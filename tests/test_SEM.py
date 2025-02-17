@@ -3,7 +3,6 @@ import unittest
 import numpy as np
 from funcnodes_microscopy.SEM import upload_sem_image
 import os
-import base64
 
 
 class TestSEM(unittest.IsolatedAsyncioTestCase):
@@ -12,7 +11,6 @@ class TestSEM(unittest.IsolatedAsyncioTestCase):
             self.tiffbytes = f.read()
 
     async def test_upload_sem_image(self):
-
         load_sem: fn.Node = upload_sem_image()
         load_sem.inputs["input"].value = self.tiffbytes
         self.assertIsInstance(load_sem, fn.Node)
