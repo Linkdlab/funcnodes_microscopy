@@ -1,20 +1,19 @@
 import sys
 import os
 import unittest
-import funcnodes as fn
-from tests import test_segmentation  # noqa
+from tests import test_images, test_SEM  # noqa: E402
 
 sys.path.append(
     os.path.dirname(os.path.abspath(__file__))
 )  # in case test folder is not in sys path
 from all_nodes_test_base import TestAllNodesBase  # noqa: E402
-from . import test_SEM  # noqa: E402
 
-fn.config.IN_NODE_TEST = True
+# fn.config.IN_NODE_TEST = True
+
 
 sub_test_classes = []
 
-for mod in (test_SEM, test_segmentation):
+for mod in (test_SEM, test_images):
     for cls in mod.__dict__.values():
         if isinstance(cls, type) and issubclass(cls, unittest.IsolatedAsyncioTestCase):
             sub_test_classes.append(cls)

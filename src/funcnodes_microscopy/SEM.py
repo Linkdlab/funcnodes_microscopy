@@ -2,7 +2,6 @@ from typing import Tuple, Dict, Any
 from funcnodes import NodeDecorator, Shelf
 import tifffile as tiff
 import numpy as np
-from funcnodes_files import FileUpload
 import io
 
 
@@ -62,10 +61,6 @@ def _read_sem_image(data: bytes) -> Tuple[np.ndarray, Dict[str, Any]]:
     # Extract metadata into a dictionary
     metadata = {tag.name: tag.value for tag in meta_dict.values()}
 
-    # # Process the CZ_SEM metadata if it exists
-    # if 'CZ_SEM' in metadata:
-    #     metadata['CZ_SEM'] = handle_metadata(metadata['CZ_SEM'])
-
     # Process the CZ_SEM metadata if it exists and add it to the main dictionary
     if "CZ_SEM" in metadata:
         readable_cz_sem = handle_metadata(metadata["CZ_SEM"])
@@ -78,7 +73,7 @@ def _read_sem_image(data: bytes) -> Tuple[np.ndarray, Dict[str, Any]]:
 
 @NodeDecorator(
     id="microscopy.sem.upload",
-    name="Upload SEM Image",
+    name="Process SEM Image",
     inputs=[
         {
             "name": "input",
@@ -93,15 +88,12 @@ def _read_sem_image(data: bytes) -> Tuple[np.ndarray, Dict[str, Any]]:
         },
     ],
 )
-def upload_sem_image(input: FileUpload) -> Tuple[np.ndarray, Dict[str, Any]]:
-    if isinstance(input, dict):
-        input = FileUpload(**input)
-
-    return _read_sem_image(input.bytedata)
+def sem_image(input: bytes) -> Tuple[np.ndarray, Dict[str, Any]]:
+    return _read_sem_image(input)
 
 
 SEM_NODE_SHELF = Shelf(
-    nodes=[upload_sem_image],
+    nodes=[sem_image],
     subshelves=[],
     name="Scanning Electron Microscopy (SEM)",
     description="Handling of SEM images in tif (tiff) format",
